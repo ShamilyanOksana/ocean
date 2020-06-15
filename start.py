@@ -30,10 +30,11 @@ class MyWin(QtWidgets.QMainWindow):
 
     def login(self):
         user_address = self.ui.address.currentText()
+        self.house.auth(user_address)
         if user_address == self.admin:
             self.nextwin = admin.AdminWin(self.house)
         else:
-            self.nextwin = user.UserWin(self.house, user_address)
+            self.nextwin = user.UserWin(self.house)
 
         self.nextwin.show()
         self.close()

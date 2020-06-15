@@ -5,12 +5,13 @@ import house
 
 
 class AdminWin(QtWidgets.QMainWindow):
-    # def __init__(self, house):
-    def __init__(self):
+    def __init__(self, house):
+    # def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.house = house.House()
+        # self.house = house.House()
+        self.house = house
         self.set_accounts()
         self.ui.btn_add.clicked.connect(self.add_house)
 
@@ -32,9 +33,9 @@ class AdminWin(QtWidgets.QMainWindow):
         self.ui.square.clear()
         self.ui.time.clear()
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    myapp = AdminWin()
-    myapp.show()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     myapp = AdminWin()
+#     myapp.show()
+#     sys.exit(app.exec())
 

@@ -3,13 +3,9 @@ import json
 
 
 class House:
-
-
     w3 = web3.Web3(web3.HTTPProvider('http://127.0.0.1:7545'))
-    w3.eth.defaultAccount = w3.eth.accounts[1]
 
-    user_address = w3.eth.defaultAccount
-    password = None
+    user_address = None
 
     with open('abi.json') as abifile:
         abi = json.load(abifile)
@@ -22,9 +18,6 @@ class House:
         abi=abi
     )
 
-
-
-
     def auth(self, login):
         try:
             login = web3.Web3.toChecksumAddress(login)
@@ -36,7 +29,6 @@ class House:
             self.w3.eth.defaultAccount = self.user_address
         return log
 
-
     def get_accounts(self):
         return self.w3.eth.accounts
 
@@ -44,7 +36,7 @@ class House:
         return self.cntr.call().admin()
 
     def reg_home(self, owner, address, square, period):
-        owner = str(owner)
+        owner = web3.Web3.toChecksumAddress(owner)
         address = str(address)
         square = int(square)
         period = int(period)

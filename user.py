@@ -2,22 +2,21 @@ from ui.user import Ui_MainWindow
 from PyQt5 import QtWidgets
 import sys
 import house
-import web3
 # import sale
 
 
 class UserWin(QtWidgets.QMainWindow):
-
-
-    def __init__(self):
+    def __init__(self, house):
         QtWidgets.QWidget.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.house = house.House()
+        # self.house = house.House()
+        self.house = house
         self.user = self.house.user_address
         balance = self.house.w3.eth.getBalance(self.user)
         self.ui.label_user.setText(self.user)
-        self.ui.label_balance.setText(str(balance//(10**18)))
+        self.ui.label_balance.setText(str(balance//(10**18))+'  ETH')
+
         self.T_all_houses()
         self.T_my_houses()
         self.T_my_sales()
@@ -125,9 +124,9 @@ class UserWin(QtWidgets.QMainWindow):
                 self.ui.table_sale.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
 
 
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    myapp = UserWin()
-    myapp.show()
-    sys.exit(app.exec())
+#
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     myapp = UserWin()
+#     myapp.show()
+#     sys.exit(app.exec())
