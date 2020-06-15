@@ -12,5 +12,7 @@ class UserWin(QtWidgets.QMainWindow):
 
         self.user = self.ui.label_user.setText(user)
 
+        #Что-то поменяла
+
 
 
