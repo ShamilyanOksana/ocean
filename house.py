@@ -54,7 +54,7 @@ class House:
     def buy(self, ID_sale):
         ID_sale = int(ID_sale)
         # price = int(_____)
-        # self.cntr.
+        self.cntr.
 
     def stop_sale(self, ID_sale):
         pass
