@@ -118,10 +118,10 @@ class Ui_MainWindow(object):
         self.label_1 = QtWidgets.QLabel(self.centralwidget)
         self.label_1.setGeometry(QtCore.QRect(10, 10, 51, 30))
         self.label_1.setObjectName("label_1")
-        self.label_address = QtWidgets.QLabel(self.centralwidget)
-        self.label_address.setGeometry(QtCore.QRect(70, 10, 461, 30))
-        self.label_address.setText("")
-        self.label_address.setObjectName("label_address")
+        self.label_user = QtWidgets.QLabel(self.centralwidget)
+        self.label_user.setGeometry(QtCore.QRect(70, 10, 461, 30))
+        self.label_user.setText("")
+        self.label_user.setObjectName("label_user")
         self.label_balance = QtWidgets.QLabel(self.centralwidget)
         self.label_balance.setGeometry(QtCore.QRect(610, 10, 241, 30))
         self.label_balance.setText("")
@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

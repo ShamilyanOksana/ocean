@@ -36,7 +36,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -308,7 +308,7 @@
      <string>Адрес:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_address">
+   <widget class="QLabel" name="label_user">
     <property name="geometry">
      <rect>
       <x>70</x>
