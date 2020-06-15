@@ -9,9 +9,26 @@ class AdminWin(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.house = house
+        self.set_accounts()
+        self.ui.btn_add.clicked.connect(self.add_house)
 
-        self.ui.btn_add.clicked.connect()
+    def set_accounts(self):
+        accounts = self.house.get_accounts()
+        for i in accounts:
+            self.ui.owner.addItem(i)
 
     def add_house(self):
+
+        owner = self.ui.owner.currentText()
+        address = self.ui.address.text()
+        square = self.ui.square.text()
+        time = self.ui.time.text()
+
+        self.house.reg_home(owner, address, square, time)
+
+        self.ui.address.clear()
+        self.ui.square.clear()
+        self.ui.time.clear()
+
 
 
