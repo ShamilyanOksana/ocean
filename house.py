@@ -39,3 +39,23 @@ class House:
     def get_admin(self):
         return self.cntr.call().admin()
 
+    def reg_home(self, owner, address, square, period):
+        owner = str(owner)
+        address = str(address)
+        square = int(square)
+        period = int(period)
+        self.cntr.reg_home(owner, address, square, period).transact()
+
+    def create_sale(self, ID_home, price):
+        ID_home = int(ID_home)
+        price = int(price)
+        self.cntr.create_sale(ID_home, price).transact()
+
+    def buy(self, ID_sale):
+        ID_sale = int(ID_sale)
+        # price = int(_____)
+        self.cntr.
+
+    def stop_sale(self, ID_sale):
+        pass
+
