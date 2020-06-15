@@ -3,11 +3,13 @@ import json
 
 
 class House:
-    user_address = None
-    password = None
+
 
     w3 = web3.Web3(web3.HTTPProvider('http://127.0.0.1:7545'))
-    w3.eth.defaultAccount = w3.eth.accounts[0]
+    w3.eth.defaultAccount = w3.eth.accounts[1]
+
+    user_address = w3.eth.defaultAccount
+    password = None
 
     with open('abi.json') as abifile:
         abi = json.load(abifile)
@@ -62,8 +64,22 @@ class House:
         ID_sale = int(ID_sale)
         self.cntr.functions.stop_sale(ID_sale).transact()
 
+    def get_home(self, ID_home):
+        ID_home = int(ID_home)
+        return self.cntr.functions.get_home(ID_home).call()
+
+    def get_sale(self, ID_sale):
+        ID_sale = int(ID_sale)
+        return self.cntr.functions.get_sale(ID_sale).call()
+
     def get_homes_amount(self):
-        return self.cntr.call().homes
+        return self.cntr.functions.get_homes_amount().call()
+
+    def get_sales_amount(self):
+        return self.cntr.functions.get_sales_amount().call()
+
 
 H = House()
-print(H.get_homes_amount())
+# print(H.get_homes_amount())
+# print(H.get_home(0))
+# print(H.get_sale(0))

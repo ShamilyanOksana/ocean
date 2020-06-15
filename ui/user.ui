@@ -85,11 +85,6 @@
         <string>Собственник</string>
        </property>
       </column>
-      <column>
-       <property name="text">
-        <string>Цена</string>
-       </property>
-      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

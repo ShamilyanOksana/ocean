@@ -100,10 +100,33 @@
 				"type": "address"
 			},
 			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "get_homes_amount",
+		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
@@ -124,6 +147,11 @@
 		"name": "get_sale",
 		"outputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
 				"internalType": "address payable",
 				"name": "",
 				"type": "address"
@@ -138,6 +166,19 @@
 				"name": "",
 				"type": "uint256"
 			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "get_sales_amount",
+		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
@@ -180,6 +221,11 @@
 			{
 				"internalType": "uint256",
 				"name": "period",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "in_sale",
 				"type": "uint256"
 			}
 		],

@@ -7,6 +7,7 @@ import sys
 
 
 class MyWin(QtWidgets.QMainWindow):
+
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.ui = Ui_MainWindow()
@@ -36,14 +37,6 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.nextwin.show()
         self.close()
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
