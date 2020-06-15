@@ -36,7 +36,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -62,7 +62,12 @@
       </attribute>
       <column>
        <property name="text">
-        <string>ID</string>
+        <string> ID дома</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Собственник</string>
        </property>
       </column>
       <column>
@@ -82,7 +87,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Собственник</string>
+        <string>Продается</string>
        </property>
       </column>
      </widget>
@@ -96,7 +101,7 @@
        <rect>
         <x>10</x>
         <y>50</y>
-        <width>591</width>
+        <width>711</width>
         <height>231</height>
        </rect>
       </property>
@@ -105,7 +110,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>ID</string>
+        <string>ID дома</string>
        </property>
       </column>
       <column>
@@ -123,18 +128,23 @@
         <string>Срок эксплуатации</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Продается</string>
+       </property>
+      </column>
      </widget>
      <widget class="QPushButton" name="btn_sale">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>150</y>
+        <x>750</x>
+        <y>140</y>
         <width>93</width>
         <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>Продать</string>
+       <string>На продажу</string>
       </property>
      </widget>
      <widget class="QTableWidget" name="table_my_sale">
@@ -151,7 +161,7 @@
       </attribute>
       <column>
        <property name="text">
-        <string>ID</string>
+        <string>ID объявления</string>
        </property>
       </column>
       <column>
@@ -171,7 +181,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Цена</string>
+        <string>Стоимость</string>
        </property>
       </column>
      </widget>
@@ -233,22 +243,12 @@
       </attribute>
       <column>
        <property name="text">
-        <string>ID</string>
+        <string>ID объявления</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Адрес</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Общая площадь</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Срок эксплуатации</string>
+        <string>ID дома</string>
        </property>
       </column>
       <column>
@@ -258,7 +258,17 @@
       </column>
       <column>
        <property name="text">
-        <string>Цена</string>
+        <string>Покупатель</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Стоимость</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Статус</string>
        </property>
       </column>
      </widget>

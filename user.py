@@ -1,8 +1,6 @@
 from ui.user import Ui_MainWindow
 from PyQt5 import QtWidgets
-import sys
-import house
-# import sale
+from ui.sale import Ui_Dialog
 
 
 class UserWin(QtWidgets.QMainWindow):
@@ -10,26 +8,45 @@ class UserWin(QtWidgets.QMainWindow):
         QtWidgets.QWidget.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.house = house.House()
         self.house = house
         self.user = self.house.user_address
-        balance = self.house.w3.eth.getBalance(self.user)
+        self.s = None
         self.ui.label_user.setText(self.user)
-        self.ui.label_balance.setText(str(balance//(10**18))+'  ETH')
 
+        self.update_tables()
+
+        self.ui.btn_sale.clicked.connect(self.sale)
+        self.ui.btn_cancel.clicked.connect(self.cancel_sale)
+        self.ui.btn_buy.clicked.connect(self.buy)
+
+    def update_tables(self):
+        balance = self.house.w3.eth.getBalance(self.user)
+        self.ui.label_balance.setText(str(balance // (10 ** 18)) + '  ETH')
         self.T_all_houses()
         self.T_my_houses()
         self.T_my_sales()
         self.T_all_sales()
-    #     self.ui.btn_sale.clicked.connect(self.sale)
-	#
-    def sale(self):
-        pass
-    #     self.s = sale.SaleWin()
-    #     self.s.show()
 
-    def stop_sale(self, sale_ID):
-        pass
+    def sale(self):
+        row = self.ui.table_my.currentRow()
+        house_id = int(self.ui.table_my.item(row, 0).text())
+        address = self.ui.table_my.item(row, 1).text()
+        s = SaleWin(self.house, house_id, address)
+        s.exec_()
+        self.update_tables()
+
+    def cancel_sale(self):
+        row = self.ui.table_my_sale.currentRow()
+        sale_id = int(self.ui.table_my_sale.item(row, 0).text())
+        self.house.stop_sale(sale_id)
+        self.update_tables()
+
+    def buy(self):
+        row = self.ui.table_sale.currentRow()
+        sale_id = int(self.ui.table_sale.item(row, 0).text())
+        price = int(self.ui.table_sale.item(row, 4).text())
+        self.house.buy(sale_id, price)
+        self.update_tables()
 
     def T_all_houses(self):
         result = []
@@ -80,13 +97,13 @@ class UserWin(QtWidgets.QMainWindow):
             r = []
             s = [i] + self.house.get_sale(i)
             print(s)
-            if (s[2] == self.user and s[5] == 1):
+            if s[2] == self.user and s[5] == 1:
                 r.append(i)
                 h = self.house.get_home(s[1])
                 r.append(h[1])
                 r.append(h[2])
                 r.append(h[3])
-                r.append(s[4])
+                r.append(int(s[4]//(10**18)))
                 print(r)
                 result.append(r)
 
@@ -104,6 +121,7 @@ class UserWin(QtWidgets.QMainWindow):
         amount = self.house.get_sales_amount()
         for i in range(amount):
             r = [i] + self.house.get_sale(i)
+            r[4] = int(int(r[4])//(10**18))
             if (r[3] == '0x0000000000000000000000000000000000000000'):
                 r[3] = ''
             if r[5] == 0:
@@ -124,9 +142,21 @@ class UserWin(QtWidgets.QMainWindow):
                 self.ui.table_sale.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
 
 
-#
-# if __name__ == "__main__":
-#     app = QtWidgets.QApplication(sys.argv)
-#     myapp = UserWin()
-#     myapp.show()
-#     sys.exit(app.exec())
+class SaleWin(QtWidgets.QDialog):
+    def __init__(self, house, house_id, address):
+        QtWidgets.QWidget.__init__(self)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+
+        self.house = house
+        self.house_id = house_id
+        self.ui.address.setText(address)
+
+        self.ui.btn_cancel.clicked.connect(self.close)
+        self.ui.btn_sale.clicked.connect(self.sale_house)
+
+    def sale_house(self):
+        price = int(self.ui.price.text())
+        self.house.create_sale(self.house_id, price)
+        self.close()
+

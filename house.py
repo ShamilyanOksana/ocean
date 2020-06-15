@@ -44,13 +44,14 @@ class House:
 
     def create_sale(self, ID_home, price):
         ID_home = int(ID_home)
-        price = int(price)
+        price = int(price)*(10**18)
+        print('set price: %d' %price)
         self.cntr.functions.create_sale(ID_home, price).transact()
 
-    def buy(self, ID_sale):
+    def buy(self, ID_sale, price):
         ID_sale = int(ID_sale)
-        # price = int(_____)
-        # self.cntr.functions.buy(ID_sale).transact({'value':value})
+        price = web3.Web3.toWei(int(price), 'ether')
+        self.cntr.functions.buy(ID_sale).transact({'value': price})
 
     def stop_sale(self, ID_sale):
         ID_sale = int(ID_sale)
@@ -71,7 +72,8 @@ class House:
         return self.cntr.functions.get_sales_amount().call()
 
 
-H = House()
-# print(H.get_homes_amount())
-# print(H.get_home(0))
-# print(H.get_sale(0))
+# h = House()
+# h.auth('0x356D7630B61EC74A4562E9CA5d464B406d754a52')
+# h.reg_home('0x627117c3bB529B18c50e4aFF24350C4B6deA594E', 'Петровская, 50', 70, 5)
+# h.reg_home('0xA969d347ae987E66d71e55500f10b1b52A07cdc9', 'Александровская, 127', 60, 8)
+# h.reg_home('0xA969d347ae987E66d71e55500f10b1b52A07cdc9', 'Чехова, 203', 230, 3)
