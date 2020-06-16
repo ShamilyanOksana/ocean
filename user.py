@@ -1,5 +1,5 @@
 from ui.user import Ui_MainWindow
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from ui.sale import Ui_Dialog
 
 
@@ -13,6 +13,9 @@ class UserWin(QtWidgets.QMainWindow):
         self.s = None
         self.ui.label_user.setText(self.user)
 
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.update_tables)
+        self.timer.start(10000)
         self.update_tables()
 
         self.ui.btn_sale.clicked.connect(self.sale)
@@ -66,7 +69,9 @@ class UserWin(QtWidgets.QMainWindow):
         self.ui.table_register.setColumnCount(6)
         for i in range(len(result)):
             for j in range(6):
-                self.ui.table_register.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+                item = QtWidgets.QTableWidgetItem(str(result[i][j]))
+                item.setTextAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter)
+                self.ui.table_register.setItem(i, j, item)
 
     def T_my_houses(self):
         result = []
@@ -88,7 +93,9 @@ class UserWin(QtWidgets.QMainWindow):
         self.ui.table_my.setColumnCount(5)
         for i in range(len(result)):
             for j in range(5):
-                self.ui.table_my.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+                item = QtWidgets.QTableWidgetItem(str(result[i][j]))
+                item.setTextAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter)
+                self.ui.table_my.setItem(i, j, item)
 
     def T_my_sales(self):
         result = []
@@ -114,7 +121,9 @@ class UserWin(QtWidgets.QMainWindow):
         self.ui.table_my_sale.setColumnCount(5)
         for i in range(len(result)):
             for j in range(5):
-                self.ui.table_my_sale.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+                item = QtWidgets.QTableWidgetItem(str(result[i][j]))
+                item.setTextAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter)
+                self.ui.table_my_sale.setItem(i, j, item)
 
     def T_all_sales(self):
         result = []
@@ -139,7 +148,10 @@ class UserWin(QtWidgets.QMainWindow):
         self.ui.table_sale.setColumnCount(6)
         for i in range(len(result)):
             for j in range(6):
-                self.ui.table_sale.setItem(i, j, QtWidgets.QTableWidgetItem(str(result[i][j])))
+                item = QtWidgets.QTableWidgetItem(str(result[i][j]))
+                item.setTextAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter)
+                self.ui.table_sale.setItem(i, j, item)
+
 
 
 class SaleWin(QtWidgets.QDialog):

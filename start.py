@@ -14,6 +14,7 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.house = house.House()
         self.nextwin = None
+        self.adminwin = None
         self.admin = None
         self.is_admin()
 
@@ -32,10 +33,9 @@ class MyWin(QtWidgets.QMainWindow):
         user_address = self.ui.address.currentText()
         self.house.auth(user_address)
         if user_address == self.admin:
-            self.nextwin = admin.AdminWin(self.house)
-        else:
-            self.nextwin = user.UserWin(self.house)
-
+            self.adminwin = admin.AdminWin(self.house)
+            self.adminwin.show()
+        self.nextwin = user.UserWin(self.house)
         self.nextwin.show()
         self.close()
 
