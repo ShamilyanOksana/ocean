@@ -16,10 +16,18 @@ class MyWin(QtWidgets.QMainWindow):
         self.nextwin = None
         self.adminwin = None
         self.admin = None
-        self.is_admin()
-
-        self.set_accounts()
-        self.ui.btn_auth.clicked.connect(self.login)
+        try:
+            self.is_admin()
+        except Exception:
+            pass
+        try:
+            self.set_accounts()
+        except Exception:
+            pass
+        try:
+            self.ui.btn_auth.clicked.connect(self.login)
+        except Exception:
+            pass
 
     def set_accounts(self):
         accounts = self.house.get_accounts()
@@ -32,11 +40,11 @@ class MyWin(QtWidgets.QMainWindow):
     def login(self):
         user_address = self.ui.address.currentText()
         self.house.auth(user_address)
+        self.nextwin = user.UserWin(self.house)
+        self.nextwin.show()
         if user_address == self.admin:
             self.adminwin = admin.AdminWin(self.house)
             self.adminwin.show()
-        self.nextwin = user.UserWin(self.house)
-        self.nextwin.show()
         self.close()
 
 

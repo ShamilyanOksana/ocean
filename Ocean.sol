@@ -62,6 +62,7 @@ contract Ocean{
 
     function buy(uint ID_sale) public payable {
         uint price = sales[ID_sale].price;
+        uint ID_home = sales[ID_sale].ID_home;
         require(msg.value == price, "Wrong money");
         uint status = sales[ID_sale].status;
         require(status == 1);
@@ -69,6 +70,10 @@ contract Ocean{
         require(msg.sender != seller);
         sales[ID_sale].buyer = msg.sender;
         sales[ID_sale].status = 2;
+        homes[ID_home].in_sale = 0;
+        homes[ID_home].owner = msg.sender;
+        seller.transfer(msg.value);
+
     }
 
     function get_sale(uint ID_sale) public view returns(uint, address payable, address payable, uint, uint) {

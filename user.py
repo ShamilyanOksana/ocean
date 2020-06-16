@@ -16,19 +16,46 @@ class UserWin(QtWidgets.QMainWindow):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_tables)
         self.timer.start(10000)
-        self.update_tables()
+        try:
+            self.update_tables()
+        except Exception:
+            pass
+        try:
+            self.ui.btn_sale.clicked.connect(self.sale)
+        except Exception:
+            pass
+        try:
+            self.ui.btn_cancel.clicked.connect(self.cancel_sale)
+        except Exception:
+            pass
+        try:
+            self.ui.btn_buy.clicked.connect(self.buy)
+        except Exception:
+            pass
 
-        self.ui.btn_sale.clicked.connect(self.sale)
-        self.ui.btn_cancel.clicked.connect(self.cancel_sale)
-        self.ui.btn_buy.clicked.connect(self.buy)
 
     def update_tables(self):
-        balance = self.house.w3.eth.getBalance(self.user)
-        self.ui.label_balance.setText(str(balance // (10 ** 18)) + '  ETH')
-        self.T_all_houses()
-        self.T_my_houses()
-        self.T_my_sales()
-        self.T_all_sales()
+        try:
+            balance = self.house.w3.eth.getBalance(self.user)
+            self.ui.label_balance.setText(str(balance // (10 ** 18)) + '  ETH')
+        except Exception:
+            pass
+        try:
+            self.T_all_houses()
+        except Exception:
+            pass
+        try:
+            self.T_my_houses()
+        except Exception:
+            pass
+        try:
+            self.T_my_sales()
+        except Exception:
+            pass
+        try:
+            self.T_all_sales()
+        except Exception:
+            pass
 
     def sale(self):
         row = self.ui.table_my.currentRow()
@@ -163,12 +190,16 @@ class SaleWin(QtWidgets.QDialog):
         self.house = house
         self.house_id = house_id
         self.ui.address.setText(address)
-
-        self.ui.btn_cancel.clicked.connect(self.close)
-        self.ui.btn_sale.clicked.connect(self.sale_house)
+        try:
+            self.ui.btn_cancel.clicked.connect(self.close)
+        except Exception:
+            pass
+        try:
+            self.ui.btn_sale.clicked.connect(self.sale_house)
+        except Exception:
+            pass
 
     def sale_house(self):
         price = int(self.ui.price.text())
         self.house.create_sale(self.house_id, price)
         self.close()
-
